@@ -82,7 +82,7 @@ You can plug this and future examples into the online [REPL][1] to verify them i
 (reduce + (take 333 threes-plus-fives))
 {% endhighlight %}
 
-This looks and feels ghoulish so I'm going to assume it's nowhere near idiomatic(the names alone are far too long given the Clojure I've seen). However, it benchmarks a heck of a lot better. Speaking of which, I had no idea how to benchmark Clojure, but some quick [DDG][2]ing yielded the [Criterium][3] library which was easy to get up and running even for a total novice. Assuming you have Leiningen but haven't set up any global plugins yet, you can just:
+This looks and feels ghoulish so I'm going to assume it's nowhere near idiomatic(the names alone are far too long given the Clojure I've seen). However, it benchmarks a heck of a lot better. Speaking of which, I had no idea how to benchmark Clojure, but some quick [DDG][2]ing yielded the [Criterium][3] library which was easy to get up and running even for a total novice. Assuming you have [Leiningen][4] but haven't set up any global plugins yet, you can just:
 
 {% highlight bash %}
 echo {:user {:plugins [[criterium "0.4.1"]]}} > ~/.lein/profiles.clj
@@ -104,5 +104,6 @@ Note that the benchmarks aren't comparable between languages as they're running 
 Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is far quicker than the first. I'm sure there's a way to improve on it more but, frankly, this post has dragged on long enough.
 
 [1]:	http://tryclj.com/											"Try Clojure"
-[2]:	https://duckduckgo.com 									"DuckDuckGo"
+[2]:	https://duckduckgo.com/?q=clojure+benchmark+criterium "DuckDuckGo"
 [3]:	https://github.com/hugoduncan/criterium "Criterium"
+[4]:  http://leiningen.org/ "Leiningen"
