@@ -853,3 +853,57 @@ var navigation = responsiveNav("#site-nav", { // Selector: The ID of the wrapper
 $(function() {
 	$("article").fitVids();
 });
+
+/* Highcharts */
+var makeChart = function() {
+  var $chartDiv = $(this);
+  var $series = $(this).find('.chart-data');
+  var options = {
+    chart: {
+      renderTo: $(this)[0].id,
+      type: 'column'
+    },
+    title: {},
+    xAxis: {},
+    yAxis: {
+      title: {}
+    },
+    legend: {
+      enabled: false
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="padding:0"><b>{point.y}{units}</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.1,
+            borderWidth: 0
+        }
+    },
+    series: []
+  };
+  options.title.text = $chartDiv[0].title;
+  options.chart.type = $chartDiv.data('chart-type') || options.chart;
+  options.xAxis.categories =  $chartDiv.data('x-categories').split(',');
+  var units = $chartDiv.data('unit');
+  options.yAxis.title.text = $chartDiv.data('y-title-text').replace('{units}', units || 'ms');
+  options.tooltip.pointFormat = options.tooltip.pointFormat.replace('{units}', units || 'ms');
+  $series.each(function(){
+    var series = {};
+    series.name = $(this).data('name');
+    series.data = [];
+    $.each($(this).data('series').split(','), function() {
+      series.data.push(parseInt(this.trim()));
+    });
+    options.series.push(series);
+  });
+  var chart = new Highcharts.Chart(options);
+}
+
+$(function () {
+  $('.chart').each(makeChart);
+})  

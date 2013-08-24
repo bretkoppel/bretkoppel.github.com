@@ -58,7 +58,7 @@ while (multiplier*3 < 1000)
 
 Alright, let's see how these compare. Here's how the benchmarks work out over 1000 runs in the VM I'm using:
 
-<div id="Chart1" class="chart" title="C# Benchmarks" data-chart-type="column" data-x-categories="Solution 1, Solution 2, Solution 3" data-y-title-text="Runtime(ms)">
+<div id="Chart1" class="chart" title="C# Benchmarks" data-chart-type="column" data-x-categories="Solution 1, Solution 2, Solution 3" data-y-title-text="Runtime(ms per 1000 calls)">
   <span class="chart-data" data-name="" data-series="17,14,2"/>
 </div>
 
@@ -103,65 +103,11 @@ Then to benchmark the solutions:
 
 Anyway, on to the benchmarks:
 
-<div id="Chart2" class="chart" title="Clojure Benchmarks" data-chart-type="column" data-x-categories="Solution 1,Solution 2" data-y-title-text="Runtime(ms)">
+<div id="Chart2" class="chart" title="Clojure Benchmarks" data-chart-type="column" data-x-categories="Solution 1,Solution 2" data-y-title-text="Runtime({units} per call)" data-unit="μs">
   <span class="chart-data" data-name="" data-series="269,68"/>
 </div>
 
 Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is much quicker than the first. I'm sure there's a way to improve on it more. If you have one(or any other comments), let me know on [Twitter](https://twitter.com/bretkoppel).
-
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript">
-  var makeChart = function() {
-    var $chartDiv = $(this);
-    var $series = $(this).find('.chart-data');
-    var options = {
-      chart: {
-        renderTo: $(this)[0].id,
-        type: 'column'
-      },
-      title: {},
-      xAxis: {},
-      yAxis: {
-        title: {}
-      },
-      legend: {
-        enabled: false
-      },
-      tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="padding:0"><b>{point.y} ms</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-      },
-      plotOptions: {
-          column: {
-              pointPadding: 0.1,
-              borderWidth: 0
-          }
-      },
-      series: []
-    };
-    options.title.text = $chartDiv[0].title;
-    options.chart.type = $chartDiv.data('chart-type') || options.chart;
-    options.xAxis.categories =  $chartDiv.data('x-categories').split(',');
-    options.yAxis.title.text = $chartDiv.data('y-title-text');
-    $series.each(function(){
-      var series = {};
-      series.name = $(this).data('name');
-      series.data = [];
-      $.each($(this).data('series').split(','), function() {
-        series.data.push(parseInt(this.trim()));
-      });
-      options.series.push(series);
-    });
-    var chart = new Highcharts.Chart(options);
-  }
-
-  $(function () {
-    $('.chart').each(makeChart);
-  })  
-</script>
 
 [1]:	http://tryclj.com/ "Try Clojure"
 [2]:	https://duckduckgo.com/?q=clojure+benchmark+criterium "DuckDuckGo"
