@@ -95,7 +95,7 @@ This looks and feels ghoulish so I'm going to assume it's far from idiomatic(the
 echo {:user {:plugins [[criterium "0.4.1"]]}} > ~/.lein/profiles.clj
 {% endhighlight %}
 
-Then to benchmark the first solution:
+Then to benchmark the solutions:
 
 {% highlight clojure %}
 (use 'criterium.core)
