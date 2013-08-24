@@ -29,7 +29,7 @@ Console.WriteLine(
 );
 {% endhighlight %}
 
-Easy, right? Annoying, though. This solution crawls each element in the enumerable twice: Once to filter it down to elements divisible by 3 or 5; Again to compute the sum. Why not use Aggregate so that we only need to crawl the list once?
+Easy, right? Not efficient, though. This solution crawls each element in the enumerable twice: Once to filter it down to elements divisible by 3 or 5; Again to compute the sum. Why not use Aggregate so that we only need to crawl the list once?
 
 {% highlight csharp %}
 // Faster
@@ -89,7 +89,7 @@ You can plug this and future examples into the online [REPL][1] to verify them i
 (threes-and-fives 1000)
 {% endhighlight %}
 
-This looks and feels ghoulish so I'm going to assume it's far from idiomatic(the names alone are far too long given the Clojure I've seen). However, it benchmarks a heck of a lot better. Speaking of which, I had no idea how to benchmark Clojure, but some quick [DDG][2]ing yielded the [Criterium][3] library which was easy to get up and running even for a total novice. Assuming you have [Leiningen 2.0+][4] but haven't set up any global plugins yet, you can just:
+This looks and feels ghoulish so I'm going to assume it's far from idiomatic(the names alone are too long given the Clojure I've seen). However, it benchmarks a heck of a lot better. Speaking of which, I had no idea how to benchmark Clojure, but some quick [DDG][2]ing yielded the [Criterium][3] library which was easy to get up and running even for a total novice. Assuming you have [Leiningen 2.0+][4] but haven't set up any global plugins yet, you can just:
 
 {% highlight bash %}
 echo {:user {:plugins [[criterium "0.4.1"]]}} > ~/.lein/profiles.clj
@@ -109,7 +109,7 @@ Anyway, on to the benchmarks:
   <span class="chart-data" data-name="" data-series="269,68"/>
 </div>
 
-Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is far quicker than the first. I'm sure there's a way to improve on it more. If you have one, let me know on [Twitter](https://twitter.com/bretkoppel).
+Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is far quicker than the first. I'm sure there's a way to improve on it more. If you have one(or any other comments), let me know on [Twitter](https://twitter.com/bretkoppel).
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
@@ -131,14 +131,14 @@ Note that the benchmarks aren't comparable between languages as they're running 
       },
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="padding:0"><b>{point.y:.1f} ms</b></td></tr>',
+        pointFormat: '<tr><td style="padding:0"><b>{point.y} ms</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
       },
       plotOptions: {
           column: {
-              pointPadding: 0.2,
+              pointPadding: 0.1,
               borderWidth: 0
           }
       },
@@ -157,9 +157,6 @@ Note that the benchmarks aren't comparable between languages as they're running 
       });
       options.series.push(series);
     });
-    console.log("JSON: " + JSON.stringify(options));
-    console.log("Render to element with ID : " + options.chart.renderTo);
-    console.log("Number of matching dom elements : " + $("#" + options.chart.renderTo).length);
     var chart = new Highcharts.Chart(options);
   }
 
