@@ -56,7 +56,7 @@ while (multiplier*3 < 1000)
 }
 {% endhighlight %}
 
-This gives us another speed boost, taking about 1/4 the time. Not a speed increase if you're willing to write a few extra lines of code, right? Solutions 2 and 3 could be combined to create a slightly more streamlined version, but I still have to talk about Clojure so I'm going to leave that as an exercise for the interested.
+This chops another 3/4 off of the time. Not a bad speed increase if you're willing to write a few extra lines of code, right? Solutions 2 and 3 could be combined to create a slightly more streamlined version, but I still have to talk about Clojure so I'm going to leave that as an exercise for the interested.
 
 Here's how the benchmarks work out over 500 runs in the VM I'm using:
 
