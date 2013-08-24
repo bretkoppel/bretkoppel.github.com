@@ -29,17 +29,17 @@ Console.WriteLine(
 );
 {% endhighlight %}
 
-Easy, right? Not efficient, though. This solution crawls each element in the enumerable twice: Once to filter it down to elements divisible by 3 or 5; Again to compute the sum. Why not use Aggregate so that we only need to crawl the list once?
+Easy, right? I wonder if a swap to Aggregate will speed it up at all.
 
 {% highlight csharp %}
 // Faster
 Console.WriteLine(
   Enumerable.Range(3, 997)
-  .Aggregate(0, (acc, item) => acc + ((item %3 ==0 || item %5 ==0) ? item : 0))
+  .Aggregate(0, (acc, item) => acc + ((item % 3 == 0 || item % 5 == 0) ? item : 0))
 );
 {% endhighlight %}
 
-Sure enough, this solution cuts run time by 66%. Neither of these really appeal to me, though. Why generate 999 elements when we're only ever going to use a few of 'em?
+Neither of these really appeal to me, though. Why generate 999 elements when we're only ever going to use a few of 'em?
 
 {% highlight csharp %}
 // Fastest
@@ -56,15 +56,13 @@ while (multiplier*3 < 1000)
 }
 {% endhighlight %}
 
-This brings us down another 75%. Not a bad speed increase if you're willing to write a few extra lines of code, right? Solutions 2 and 3 could be combined to create a slightly more streamlined version, but I still have to talk about Clojure so I'm going to leave that as an exercise for the interested.
-
-Here's how the benchmarks work out over 500 runs in the VM I'm using:
+Alright, let's see how these compare. Here's how the benchmarks work out over 1000 runs in the VM I'm using:
 
 <div id="Chart1" class="chart" title="C# Benchmarks" data-chart-type="column" data-x-categories="Solution 1, Solution 2, Solution 3" data-y-title-text="Runtime(ms)">
-  <span class="chart-data" data-name="" data-series="28,9,2"/>
+  <span class="chart-data" data-name="" data-series="17,14,2"/>
 </div>
 
-So now let's talk Clojure. Having started looking at Clojure only a few days ago, my solutions aren't going to be idiomatic or super efficient and I'm open to feedback. With that caveat out of the way, here's my initial solution:
+Aggregate provides a small advantage over filtering and summing, but neither comes close to just calculating what we need. Not a bad speed increase if you're willing to write a few extra lines of code, right? Let's move on to Clojure. Having started looking at Clojure only a few days ago, my solutions aren't going to be idiomatic or super efficient and I'm open to feedback. With that caveat out of the way, here's my initial solution:
 
 {% highlight clojure %}
 ; The range function here behaves as I would expect it to. Hooray!
@@ -109,7 +107,7 @@ Anyway, on to the benchmarks:
   <span class="chart-data" data-name="" data-series="269,68"/>
 </div>
 
-Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is far quicker than the first. I'm sure there's a way to improve on it more. If you have one(or any other comments), let me know on [Twitter](https://twitter.com/bretkoppel).
+Note that the benchmarks aren't comparable between languages as they're running on totally different machine configurations. As expected, the second solution is much quicker than the first. I'm sure there's a way to improve on it more. If you have one(or any other comments), let me know on [Twitter](https://twitter.com/bretkoppel).
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
