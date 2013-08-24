@@ -39,7 +39,7 @@ Console.WriteLine(
 );
 {% endhighlight %}
 
-Sure enough, this solution cuts run time by 2/3. Neither of these really appeal to me, though. Why generate 999 elements when we're only ever going to use a few of 'em?
+Sure enough, this solution cuts run time by 66%. Neither of these really appeal to me, though. Why generate 999 elements when we're only ever going to use a few of 'em?
 
 {% highlight csharp %}
 // Fastest
@@ -56,7 +56,7 @@ while (multiplier*3 < 1000)
 }
 {% endhighlight %}
 
-This chops another 3/4 off of the time. Not a bad speed increase if you're willing to write a few extra lines of code, right? Solutions 2 and 3 could be combined to create a slightly more streamlined version, but I still have to talk about Clojure so I'm going to leave that as an exercise for the interested.
+This brings us down another 75%. Not a bad speed increase if you're willing to write a few extra lines of code, right? Solutions 2 and 3 could be combined to create a slightly more streamlined version, but I still have to talk about Clojure so I'm going to leave that as an exercise for the interested.
 
 Here's how the benchmarks work out over 500 runs in the VM I'm using:
 
