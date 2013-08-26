@@ -35,7 +35,7 @@ for (long tester = 2; tester < ceiling; tester++)
 Console.WriteLine(largestPrime);
 {% endhighlight %}
 
-If you're planning to run this, I'd also plan on taking a break from the computer. Crunching this took ~60 minutes on my box. Now the fun can begin. What can we do to speed this up? Time to brush up on our math! Checking [Wikipedia](https://en.wikipedia.org/wiki/Prime_number), it looks like we can use a couple of tricks to speed this up:
+If you're planning to run this, I'd also plan on taking a break from the computer. Crunching this took hours on my setup. Now the fun can begin. What can we do to speed this up? Time to brush up on our math! Checking [Wikipedia](https://en.wikipedia.org/wiki/Prime_number), it looks like we can use a couple of tricks to speed this up:
 
 * Employ a sieve to find all of our potential primes. We could use the sieve of [Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) or the [sieve of Atkin](https://en.wikipedia.org/wiki/Sieve_of_Atkin), for instance.
 * Employ a sieve meant specifically for finding prime factors, like the [rational sieve](https://en.wikipedia.org/wiki/Rational_sieve).

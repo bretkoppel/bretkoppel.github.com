@@ -3480,8 +3480,7 @@ body {
 .entry-header {
   max-width: 640px;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto 10px auto;
 }
 @media only screen and (min-width: 62.5em) {
   .entry-header {
@@ -3622,6 +3621,16 @@ body {
 }
 .entry-content p:first-child {
   margin-top: 0;
+}
+@media only screen and (min-width: 30em) {
+  .entry-content ul {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .entry-content ul {
+    text-align: left;
+  }
 }
 @media only screen and (min-width: 62.5em) {
   .entry-content {

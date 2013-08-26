@@ -189,8 +189,7 @@ body {
 .entry-header {
 	max-width: 640px;
 	width: 100%;
-	margin-right: auto;
-	margin-left: auto;
+	margin: 0 auto 10px auto;
 	@media @large {
 		max-width: 100%;
 		margin-right: 0;
@@ -285,6 +284,12 @@ body {
 	width: 100%;
 	p:first-child {
 		margin-top: 0;
+	}
+	@media @small {
+		ul { text-align: center;}
+	}
+	@media @medium {
+		ul { text-align: left; }
 	}
 	@media @large {
 		margin-left: 180px;
