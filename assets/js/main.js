@@ -889,6 +889,7 @@ var makeChart = function() {
   options.title.text = $chartDiv[0].title;
   options.chart.type = $chartDiv.data('chart-type') || options.chart;
   options.xAxis.categories =  $chartDiv.data('x-categories').split(',');
+  options.yAxis.type = $chartDiv.data('y-scale-type') || 'linear';
   var units = $chartDiv.data('unit');
   options.yAxis.title.text = $chartDiv.data('y-title-text').replace('{units}', units || 'ms');
   options.tooltip.pointFormat = options.tooltip.pointFormat.replace('{units}', units || 'ms');
