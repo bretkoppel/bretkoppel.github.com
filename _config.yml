@@ -3,7 +3,7 @@ title:            Bret Koppel's Blog
 #logo:             site-logo.png
 disqus_shortname: bretkoppel
 #Comment out url when working locally to resolve base urls correctly
-#url:              http://blog.bretkoppel.com
+url:              http://blog.bretkoppel.com
 
 # Owner/author information
 owner:
