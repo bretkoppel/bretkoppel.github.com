@@ -869,7 +869,7 @@ var makeChart = function() {
       title: {}
     },
     legend: {
-      enabled: false
+      enabled: $series.length > 1 ? true : false
     },
     tooltip: {
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
