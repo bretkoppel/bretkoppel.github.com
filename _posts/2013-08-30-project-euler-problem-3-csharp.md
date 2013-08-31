@@ -237,4 +237,4 @@ public IEnumerable<BigInteger> PrimeFactorsByAtkin(BigInteger value)
 }
 {% endhighlight %}
 
-This was about 50% faster than the previous version and there's still room for improvement. I might post a follow-up about some of the other solutions I implemented - including via a [rational sieve](https://en.wikipedia.org/wiki/Rational_sieve) - but this seems like plenty for now. Let me know about your great solutions(or bugs in my code) by contacting me on [Twitter](https://twitter.com/bretkoppel).
+This was about 50% faster than the previous version and there's still room for improvement. I might post a follow-up about some of the other solutions I've implemented - including one that uses a [rational sieve](https://en.wikipedia.org/wiki/Rational_sieve) - but this seems like plenty for now. Let me know about your great solutions(or bugs in my code) by contacting me on [Twitter](https://twitter.com/bretkoppel).
